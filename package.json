@@ -1,0 +1,15 @@
+{
+  "name": "mario-kart-api",
+  "version": "1.0.0",
+  "description": "An api containing data on Mario Kart Wii time trials, vehicle stats, and character stats",
+  "main": "API.js",
+  "scripts": {
+    "start": "nodemon API.js"
+  },
+  "author": "Ethan Roldan",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.15"
+  }
+}
