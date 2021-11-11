@@ -45,9 +45,68 @@ app.get('/api/v1/vehicles', (req, res) => {
 });
 
 // Random vehicle
-app.get('/api/v1/vehicles/random', (req, res) => {
-    const rand = vehicles[Math.floor(Math.random() * vehicles.length + 1)];
+app.get('/api/v1/vehicles/random/query', (req, res) => {
+    const { weightClass } = req.query;
+    let sortedVehicles = [...vehicles];
+    if(weightClass){
+        sortedVehicles = sortedVehicles.filter((vehicle) => {
+            return weightClass == vehicle.weightClass
+        })
+    }
+    const rand = sortedVehicles[Math.floor(Math.random() * sortedVehicles.length)];
     return res.json(rand);
+});
+
+// vehicles sorted by a stat
+app.get('/api/v1/vehicles/sorted/query', (req,res) => {
+    const { stat } = req.query;
+    let sortedVehicles = [...vehicles];
+    if(stat){
+        switch(stat){
+            case 'speed':
+                sortedVehicles = sortedVehicles.sort((a,b) => {
+                    return a.speed - b.speed;
+                })
+                break;
+            case 'speed':
+                sortedVehicles = sortedVehicles.sort((a,b) => {
+                    return a.speed - b.speed;
+                })
+                break;
+            case 'weight':
+                sortedVehicles = sortedVehicles.sort((a,b) => {
+                    return a.weight - b.weight;
+                })
+                break;
+            case 'acceleration':
+                sortedVehicles = sortedVehicles.sort((a,b) => {
+                    return a.acceleration - b.acceleration;
+                })
+                break;
+            case 'handling':
+                sortedVehicles = sortedVehicles.sort((a,b) => {
+                    return a.handling - b.handling;
+                })
+                break;
+            case 'drift':
+                sortedVehicles = sortedVehicles.sort((a,b) => {
+                    return a.drift - b.drift;
+                })
+                break;
+            case 'offRoad':
+                sortedVehicles = sortedVehicles.sort((a,b) => {
+                    return a.offRoad - b.offRoad;
+                })
+                break;
+            case 'miniTurbo':
+                sortedVehicles = sortedVehicles.sort((a,b) => {
+                    return a.miniTurbo - b.miniTurbo;
+                })
+                break;
+        }
+    }
+    console.log(sortedVehicles);
+    return res.json(sortedVehicles);
 })
 
 // Individual vehicles and their stats
@@ -93,7 +152,7 @@ app.get('/api/v1/characters', (req, res) => {
 
 // Random character
 app.get('/api/v1/characters/random', (req, res) => {
-    const rand = characters[Math.floor(Math.random() * characters.length + 1)];
+    const rand = characters[Math.floor(Math.random() * characters.length)];
     res.json(rand);
 })
 

@@ -14,15 +14,32 @@
             padding: 0;
             margin: 0;
         }
+        body{
+            overflow-x: hidden;
+        }
+        div#header{
+            font-size: calc(3vw + 3vh);
+            height: 100vh;
+            width: 100vw;
+            position: fixed;
+            z-index: -1;
+            display: flex;
+            align-items: center;
+            background-color: #E7ECF0;
+        }
+        div#header img{
+            width: 100%;
+        }
+        div#content{
+            width:80%;
+            position: absolute;
+            top: 100vh;
+            padding: 10vw;
+            background-color: white;
+            box-shadow: 0 -1vw 1vw 0.1vw black;
+        }
         h1{
             font-size: calc(3vw + 3vh);
-            background-color: red;
-            padding: 1vw;
-        }
-        div{
-            width:80%;
-            margin-left: auto;
-            margin-right: auto;
         }
         h2{
             font-size: calc(1.5vw + 1.5vh);
@@ -50,9 +67,12 @@
     <title>Mario Kart Wii API</title>
 </head>
 <body>
-    <h1>Mario Kart Wii API</h1>
-    <div>
-        <hr>
+    <div id="header">
+        <img src="https://cdn02.nintendo-europe.com/media/images/10_share_images/games_15/wii_24/SI_Wii_MarioKartWii_image1600w.jpg">
+        <h1>API</h1>
+    </div>
+    <div id="content">
+        <h1>Mario Kart Wii API</h1>
         <h2>Introduction:</h2>
         <p>Welcome to the Mario Kart Wii API! In this API you will be able to pull the following:</p>
         <br>
@@ -68,7 +88,7 @@
         <p>To pull every track and its time trial data, you would use <span>/api/v1/tracks</span>. This will return an array with json objects with the track name and data for both shortcut and non-shortcut times. Below is an example of how to implement it and the result.</p>
         <br>
         <h4>How to implement:</h4>
-        <code>const url = '/api/v1/tracks'</code>
+        <code>const url = 'mkwiiapi.com/api/v1/tracks'</code>
         <h4>Example Result:</h4>
         <pre>
             [
@@ -144,9 +164,9 @@
         <p>To pull an individual track and its time trial data, you would use <span>/api/v1/tracks/[trackID]</span>, where trackID is either a number ID for the track or the track name without spaces or special characters. Below is an example of how to implement this and the result.</p>
         <br>
         <h4>How to implement:</h4>
-        <code>const url = 'api/v1/tracks/1'</code>
+        <code>const url = 'mkwiiapi.comapi/v1/tracks/1'</code>
         <p style="font-weight: bolder; text-decoration: underline black 2px;">OR</p>
-        <code>const url = 'api/v1/tracks/luigicircuit'</code>
+        <code>const url = 'mkwiiapi.comapi/v1/tracks/luigicircuit'</code>
         <h4>Example Result:</h4>
         <pre>
 
@@ -171,7 +191,7 @@
         <p>To pull every vehicle and its stats, you would use <span>/api/v1/vehicles</span>. This will return an array with several json objects containing the id, name, and all stats of every vehicle. Below is an example of how to use it and the result.</p>
         <br>
         <h4>How to implement:</h4>
-        <code>const url = '/api/v1/vehicles'</code>
+        <code>const url = 'mkwiiapi.com/api/v1/vehicles'</code>
         <h4>Example Result:</h4>
         <pre>
 
@@ -225,16 +245,75 @@
         ]
         </pre>
         <br>
+        <h3>Pulling Every Vehicle Sorted By A Stat:</h3>
+        <p>To pull every vehicle and its stats, you would use <span>/api/v1/vehicles/sorted/query?stat=[stat]</span>, where stat is a vehicle stat (ex. speed, weight, etc.). This will return an array with several json objections containing all vehicle information, sorted by the selected stat from least to greatest.</p>
+        <br>
+        <h4>How to implement</h4>
+        <code>const url = 'mkwiiapi.com/api/v1/vehicles/sorted/query?stat=speed</code>
+        <h4>Example Result:</h4>
+        <pre>
+            
+            [
+                {
+                id: 7,
+                name: 'Bit Bike',
+                type: 'Bike',
+                weightClass: 'light',
+                driftStyle: 'outside',
+                speed: 25,
+                weight: 18,
+                acceleration: 59,
+                handling: 67,
+                drift: 40,
+                offRoad: 56,
+                miniTurbo: 62,
+                total: 327
+                },
+                {
+                id: 2,
+                name: 'Booster Seat',
+                type: 'cart',
+                weightClass: 'light',
+                driftStyle: 'outside',
+                speed: 27,
+                weight: 27,
+                acceleration: 56,
+                handling: 64,
+                drift: 37,
+                offRoad: 54,
+                miniTurbo: 59,
+                total: 324
+                },
+                {
+                id: 11,
+                name: 'Quacker',
+                type: 'Bike',
+                weightClass: 'light',
+                driftStyle: 'inside',
+                speed: 32,
+                weight: 17,
+                acceleration: 67,
+                handling: 60,
+                drift: 62,
+                offRoad: 48,
+                miniTurbo: 57,
+                total: 343
+                },
+                ...
+            ]
+        </pre>
+
+        <br>
         <h3>Pulling individual vehicles:</h3>
         <p>To pull an individual vehicle and its stats, you would use <span>/api/v1/vehicles/[vehicleID]</span>, where vehicleID is either a number id or the name of a vehicle with no spaces. This will return an object containing the name, id, and stats of the selected vehicle. Below is an example of how to use it and the result.</p>
         <br>
         <h4>How to implement:</h4>
-        <code>const url = '/api/v1/vehicles/31'</code>
+        <code>const url = 'mkwiiapi.com/api/v1/vehicles/31'</code>
         <p style="font-weight: bolder; text-decoration: underline black 2px;">OR</p>
-        <code>const url = '/api/v1/vehicles/flamerunner</code>
+        <code>const url = 'mkwiiapi.com/api/v1/vehicles/flamerunner</code>
         <h4>Example Result:</h4>
         <pre>
-            
+
             {
                 id: 31,
                 name: 'Flame Runner',
@@ -250,6 +329,140 @@
                 miniTurbo: 51,
                 total: 279,
             }
+        </pre>
+        <br>
+        <h3>Pulling Random Vehicles:</h3>
+        <p>To pull a random vehicle and its stats, you would use <span>/api/v1/vehicles/random/query?weightClass=[weightClass]</span> (everything after the ? is optional). The weight class is either light, medium, or heavy. This will return a random vehicle, and if you specify a weight class, the vehicle will be is said weight class. Below is an example of how to use it and the result.</p>
+        <br>
+        <h4>How to implement:</h4>
+        <code>const url = 'mkwiiapi.com/api/v1/vehicles/random/query?weightClass=heavy'</code>
+        <h4>Example Result:</h4>
+        <pre>
+
+            {
+                id: 31,
+                name: 'Flame Runner',
+                type: 'bike',
+                weightClass: 'heavy',
+                driftStyle: 'inside',
+                speed: 60,
+                weight: 54,
+                acceleration: 18,
+                handling: 24,
+                drift: 51,
+                offRoad: 21,
+                miniTurbo: 51,
+                total: 279,
+            }
+        </pre>
+
+        <br>
+        <h2>Pulling character Data:</h2>
+        <p>There are three options with pulling character data: pulling every character at once, pulling a character individually
+            based on a name or id, and pulling a random character.</p>
+        <br>
+        <h3>Pulling Every character:</h3>
+        <p>To pull every character and its stats, you would use <span>/api/v1/characters</span>. This will return an array with
+            several json objects containing the id, name, and all stats of every character. Below is an example of how to use it
+            and the result.</p>
+        <br>
+        <h4>How to implement:</h4>
+        <code>const url = 'mkwiiapi.com/api/v1/characters'</code>
+        <h4>Example Result:</h4>
+        <pre>
+        
+                [
+                    {
+                        id: 1,
+                        name: 'Baby Daisy',
+                        weightClass: 'light',
+                        speed: 5,
+                        weight: 6,
+                        acceleration: 0,
+                        handling: 0,
+                        drift: 0,
+                        offRoad: 0,
+                        miniTurbo: 3,
+                        total: 14,
+                        },
+                    {
+                        id: 2,
+                        name: 'Baby Luigi',
+                        weightClass: 'light',
+                        speed: 5,
+                        weight: 8,
+                        acceleration: 0,
+                        handling: 0,
+                        drift: 0,
+                        offRoad: 0,
+                        miniTurbo: 0,
+                        total: 13,
+                    },
+                    {
+                        id: 3,
+                        name: 'Baby Mario',
+                        weightClass: 'light',
+                        speed: 0,
+                        weight: 8,
+                        acceleration: 0,
+                        handling: 6,
+                        drift: 0,
+                        offRoad: 0,
+                        miniTurbo: 0,
+                        total: 14,
+                    },
+                    ...
+                ]
+                </pre>
+        <br>
+        <h3>Pulling individual characters:</h3>
+        <p>To pull an individual character and its stats, you would use <span>/api/v1/characters/[characterID]</span>, where characterID
+            is either a number id or the name of a character with no spaces. This will return an object containing the name, id,
+            and stats of the selected character. Below is an example of how to use it and the result.</p>
+        <br>
+        <h4>How to implement:</h4>
+        <code>const url = 'mkwiiapi.com/api/v1/characters/22'</code>
+        <p style="font-weight: bolder; text-decoration: underline black 2px;">OR</p>
+        <code>const url = 'mkwiiapi.com/api/v1/characters/funkykong</code>
+        <h4>Example Result:</h4>
+        <pre>
+        
+            {
+                id: 22,
+                name: 'Funky Kong',
+                weightClass: 'heavy',
+                speed: 4,
+                weight: 0,
+                acceleration: 0,
+                handling: 0,
+                drift: 0,
+                offRoad: 3,
+                miniTurbo: 0,
+                total: 7,
+            },
+        </pre>
+        <br>
+        <h3>Pulling Random characters:</h3>
+        <p>To pull a random character and its stats, you would use <span>/api/v1/characters/random</span>. This will return a random character and their stats. Below is an example of how to use it and the result.</p>
+        <br>
+        <h4>How to implement:</h4>
+        <code>const url = 'mkwiiapi.com/api/v1/characters/random/'</code>
+        <h4>Example Result:</h4>
+        <pre>
+
+            {
+                id: 22,
+                name: 'Funky Kong',
+                weightClass: 'heavy',
+                speed: 4,
+                weight: 0,
+                acceleration: 0,
+                handling: 0,
+                drift: 0,
+                offRoad: 3,
+                miniTurbo: 0,
+                total: 7,
+            },
         </pre>
     </div>
 </body>
