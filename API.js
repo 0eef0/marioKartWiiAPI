@@ -2,6 +2,18 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const { tracks, vehicles, characters } = require('./data');
+const authorize = require('./authorize');
+
+const cors=require("cors");
+const corsOptions ={
+   origin:'*', 
+   credentials:true,            //access-control-allow-credentials:true
+   optionSuccessStatus:200,
+}
+
+app.use(cors(corsOptions)) // Use this after the variable declaration
+
+//app.use('/api', authorize);
 
 // Home Page
 app.get('/Oswald.ttf', (req, res) => {
@@ -63,11 +75,6 @@ app.get('/api/v1/vehicles/sorted/query', (req,res) => {
     let sortedVehicles = [...vehicles];
     if(stat){
         switch(stat){
-            case 'speed':
-                sortedVehicles = sortedVehicles.sort((a,b) => {
-                    return a.speed - b.speed;
-                })
-                break;
             case 'speed':
                 sortedVehicles = sortedVehicles.sort((a,b) => {
                     return a.speed - b.speed;

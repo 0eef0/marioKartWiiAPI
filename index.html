@@ -38,9 +38,6 @@
             background-color: white;
             box-shadow: 0 -1vw 1vw 0.1vw black;
         }
-        h1{
-            font-size: calc(3vw + 3vh);
-        }
         h2{
             font-size: calc(1.5vw + 1.5vh);
         }
@@ -69,7 +66,6 @@
 <body>
     <div id="header">
         <img src="https://cdn02.nintendo-europe.com/media/images/10_share_images/games_15/wii_24/SI_Wii_MarioKartWii_image1600w.jpg">
-        <h1>API</h1>
     </div>
     <div id="content">
         <h1>Mario Kart Wii API</h1>
@@ -164,9 +160,9 @@
         <p>To pull an individual track and its time trial data, you would use <span>/api/v1/tracks/[trackID]</span>, where trackID is either a number ID for the track or the track name without spaces or special characters. Below is an example of how to implement this and the result.</p>
         <br>
         <h4>How to implement:</h4>
-        <code>const url = 'mkwiiapi.comapi/v1/tracks/1'</code>
+        <code>const url = 'mkwiiapi.com/api/v1/tracks/1'</code>
         <p style="font-weight: bolder; text-decoration: underline black 2px;">OR</p>
-        <code>const url = 'mkwiiapi.comapi/v1/tracks/luigicircuit'</code>
+        <code>const url = 'mkwiiapi.com/api/v1/tracks/luigicircuit'</code>
         <h4>Example Result:</h4>
         <pre>
 
